@@ -1,6 +1,31 @@
 import datetime
 import Song
 
+if __name__ == "__main__":
+    print("\t**********************************************")
+    print("\t***  Simple Database Ver.0.0.32i-snapshot  ***")
+    print("\t**********************************************\n")
+
+    print("Select an action:")
+    print("\t1 - show all albumes")
+    print("\t2 - add new alnum")
+    print("\t3 - change some album content")
+    print("\t4 - delete some album")
+
+    choice = input()
+    if choice == "1":
+        pass
+
+    if choice == "2":
+        pass
+
+    if choice == "3":
+        pass
+
+    if choice == "4":
+        pass
+
+
 class Album:
     __name = str()
     __artist = str()
