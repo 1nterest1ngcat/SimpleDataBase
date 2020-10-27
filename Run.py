@@ -1,10 +1,10 @@
 import datetime
-
+import Song
 
 class Album:
     __name = str()
     __artist = str()
-    __bpm = float()
+    __songs = list()
 
     @property
     def name(self):
@@ -25,40 +25,85 @@ class Album:
         self.__artist = artist
 
     @property
-    def bpm(self):
-        return self.__bpm
-
-    @bpm.setter
-    def bpm(self, bpm):
-        try:
-            bpm = float(bpm)
-            if bpm > 0:
-                self.__bpm = bpm
-            else:
-                raise ValueError
-        except ValueError:
-            print("Invalid value")
-            self.__bpm = None
-
-    @property
     def dateOfRelease(self):
         return self.__dateOfRelease
+
+    @property
+    def ___songs(self):
+        return self.__songs
+
+    @___songs.setter
+    def ___songs(self,songs):
+        try:
+            songs = list(songs)
+            for s in songs:
+                if not isinstance(s,Song.Song):
+                    raise ValueError
+            self.__songs = songs
+        except ValueError:
+            print(print("Invalid value"))
+            self.__songs = None
 
     @dateOfRelease.setter
     def dateOfRelease(self, dateOfRelease):
         try:
-            dateOfRelease = datetime.datetime.strptime(dateOfRelease, "%Y-%m-%d %H:%M:%S")
+            if isinstance(dateOfRelease, str):
+                dateOfRelease = datetime.datetime.strptime(dateOfRelease, "%Y-%m-%d %H:%M:%S")
             self.__dateOfRelease = dateOfRelease
         except ValueError:
             print("Invalid value")
             self.__dateOfRelease = None
 
-    def __init__(self, name,artist,dateOfRelease, bpm):
+    def __init__(self, name,artist,dateOfRelease,songs):
         self.name = name
         self.artist = artist
         self.dateOfRelease = dateOfRelease
-        self.bpm = bpm
+        self.__songs = songs
 
+    def __init__(self, name,artist,dateOfRelease):
+        self.name = name
+        self.artist = artist
+        self.dateOfRelease = dateOfRelease
+
+    def __getitem__(self, item):
+        try:
+            return self.___songs[item]
+        except IndexError:
+            print("Invalid index")
+
+    def __setitem__(self, key, value):
+        try:
+            if(not isinstance(value,Song.Song)):
+                raise ValueError
+            self.___songs[key] = value
+        except IndexError:
+            print("Invalid index")
+        except ValueError:
+            print("Invalid value")
+
+
+    def AddSong(self, song):
+        try:
+            if (not isinstance(song, Song.Song)):
+                raise ValueError
+            self.___songs.append(song)
+        except ValueError:
+            print("Invalid value")
+
+    def RemoveSong(self, song):
+        try:
+            index = self.___songs.index(song)
+            return self.___songs.pop(index)
+        except ValueError:
+            print("Song isn't in list")
+            return None
+
+    def RemoveSongAt(self,index):
+        try:
+            return self.___songs.pop(index)
+        except ValueError:
+            print("InvalidIndex")
 
 class EP(Album):
     pass
+
