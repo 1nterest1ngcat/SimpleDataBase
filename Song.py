@@ -1,8 +1,7 @@
-import datetime
 
-
-class Album:
+class Song:
     __name = str()
+    __bpm = float()
     __artist = str()
 
     @property
@@ -24,24 +23,22 @@ class Album:
         self.__artist = artist
 
     @property
-    def dateOfRelease(self):
-        return self.__dateOfRelease
+    def bpm(self):
+        return self.__bpm
 
-    @dateOfRelease.setter
-    def dateOfRelease(self, dateOfRelease):
+    @bpm.setter
+    def bpm(self, bpm):
         try:
-            dateOfRelease = datetime.datetime.strptime(dateOfRelease, "%Y-%m-%d %H:%M:%S")
-            self.__dateOfRelease = dateOfRelease
+            bpm = float(bpm)
+            if bpm > 0:
+                self.__bpm = bpm
+            else:
+                raise ValueError
         except ValueError:
             print("Invalid value")
-            self.__dateOfRelease = None
+            self.__bpm = None
 
-    def __init__(self, name,artist,dateOfRelease):
+    def __init__(self, name,artist,bpm):
         self.name = name
         self.artist = artist
-        self.dateOfRelease = dateOfRelease
-
-
-class EP(Album):
-    pass
-
+        self.bpm = bpm
