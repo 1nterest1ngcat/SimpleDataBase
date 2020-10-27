@@ -1,6 +1,31 @@
 import datetime
 
 
+if __name__ == "__main__":
+    print("\t**********************************************")
+    print("\t***  Simple Database Ver.0.0.32i-snapshot  ***")
+    print("\t**********************************************\n")
+
+    print("Select an action:")
+    print("\t1 - show all albumes")
+    print("\t2 - add new alnum")
+    print("\t3 - change some album content")
+    print("\t4 - delete some album")
+
+    choice = input()
+    if choice == "1":
+        pass
+
+    if choice == "2":
+        pass
+
+    if choice == "3":
+        pass
+
+    if choice == "4":
+        pass
+
+
 class Album:
     __name = str()
     __artist = str()
@@ -47,13 +72,14 @@ class Album:
     @dateOfRelease.setter
     def dateOfRelease(self, dateOfRelease):
         try:
-            dateOfRelease = datetime.datetime.strptime(dateOfRelease, "%Y-%m-%d %H:%M:%S")
+            dateOfRelease = datetime.datetime.strptime(
+                dateOfRelease, "%Y-%m-%d %H:%M:%S")
             self.__dateOfRelease = dateOfRelease
         except ValueError:
             print("Invalid value")
             self.__dateOfRelease = None
 
-    def __init__(self, name,artist,dateOfRelease, bpm):
+    def __init__(self, name, artist, dateOfRelease, bpm):
         self.name = name
         self.artist = artist
         self.dateOfRelease = dateOfRelease
